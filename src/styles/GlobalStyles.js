@@ -22,9 +22,9 @@ export default createGlobalStyle`
     border: none;
   }
 
-  /* input {
+  input {
     outline: none;
-  } */
+  }
 
   a {
     text-decoration: none;
