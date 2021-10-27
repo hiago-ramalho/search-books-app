@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  margin-top: -2rem;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
 
   .input-search {
     width: 100%;

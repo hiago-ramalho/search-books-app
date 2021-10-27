@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 0 1.6rem;
 `;
 
 export const ContainerBooks = styled.div`
@@ -22,12 +21,15 @@ export const ContainerBooks = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media(max-width: 576px) {
+  @media(max-width: 590px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media(max-width: 480px) {
+    width: 70%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;

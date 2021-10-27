@@ -16,6 +16,7 @@ export const Container = styled.div`
       font-weight: bold;
       padding: .5rem 1rem;
       background: #f07167;
+      color: #000;
 
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
 

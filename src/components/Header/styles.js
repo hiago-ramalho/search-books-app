@@ -1,18 +1,24 @@
 import styled from "styled-components";
 
+import ImageLibrary from '../../assets/images/biblioteca-large.jpg';
+
 export const Container = styled.header`
   width: 100%;
-  margin: 2rem auto;
+  height: 20rem;
   
   display: flex;
   align-items: center;
   justify-content: center;
 
-  h1 {
-    font-size: 2.4rem;
-  }
+  background-image: url(${ImageLibrary});
 
+  h1 {
+    color: #fff;
+    font-size: 3rem;
+  }
+  
   img {
+    color: #fff;
     margin-left: .6rem;
   }
 `;

@@ -86,9 +86,26 @@ export const Container = styled.div`
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      
+      @media (max-width: 576px) {
+        -webkit-line-clamp: 6;
+      }
     }
+
     .book-pages {
+      font-size: 1.2rem;
       width: 100%;
+    }
+
+    .book-link {
+      width: 100%;
+      display: block;
+      margin-top: 1.2rem;
+
+      color: #000;
+      text-decoration: underline;
+      font-size: 1.2rem;
+      text-align: left;
     }
   }
 `;

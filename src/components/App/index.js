@@ -4,26 +4,25 @@ import axios from "axios";
 import Header from '../Header';
 import InputSearch from '../InputSearch';
 import Book from '../Book';
-
-import GlobalStyles from '../../styles/GlobalStyles';
-import IconSearch from "../../assets/images/search.svg"
-import ImageBook from '../../assets/images/illustration-book.jfif'
-
-import { Container, ContainerBooks } from './styles';
 import Pagination from "../Pagination";
 import Modal from "../Modal";
+
+import { Container, ContainerBooks } from './styles';
+import GlobalStyles from '../../styles/GlobalStyles';
+import IconSearch from "../../assets/images/search.svg"
+import ImageBook from '../../assets/images/illustration-book.jfif';
+
 
 function App() {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
   const [content, setContent] = useState();
+  const [idBook, setIdBook] = useState('');
 
   const [maxResults, setMaxResults] = useState(10);
   const [startIndex, setStartIndex] = useState(0)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [idBook, setIdBook] = useState('');
 
   async function handleSearchBook() {
     try {
@@ -40,7 +39,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=books&maxResults=10&startIndex=0`)
+      const data = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=all&maxResults=10&startIndex=0`)
         .then(resp => resp.data)
 
       setContent(data);
@@ -109,7 +108,7 @@ function App() {
             <Book
               key={book.id}
             >
-              <img src={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ImageBook} alt="" />
+              <img src={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ImageBook} alt="Book thumbnail" />
               <div className="text-content">
                 <h3>{book.volumeInfo.title}</h3>
                 <p>{book.volumeInfo.authors}</p>
@@ -125,7 +124,7 @@ function App() {
                 idBook === book.id && (
                   <div className="card-book" key={book.id}>
                     <h1 className="title-book">{book.volumeInfo.title}</h1>
-                    <img src={book.volumeInfo.imageLinks.thumbnail} alt="Thumbnail Book" />
+                    <img src={book.volumeInfo.imageLinks.thumbnail} alt="Thumbnail Book" loading="lazy" />
                     <p className="author-book">
                       {book.volumeInfo.authors ? `Autor: ${book.volumeInfo.authors}` : ''}
                     </p>
@@ -135,6 +134,14 @@ function App() {
                     <span className="book-pages">
                       {book.volumeInfo.pageCount ? `Páginas: ${book.volumeInfo.pageCount}` : ''}
                     </span>
+
+                    <a 
+                      href={book.volumeInfo.infoLink} 
+                      target="_blank" rel="noreferrer"
+                      className="book-link"
+                    >
+                      Ir para o livro
+                    </a>
                   </div>
 
                 )

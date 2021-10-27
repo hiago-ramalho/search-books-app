@@ -14,9 +14,7 @@ export default function Modal({ children, onCLoseModal }) {
           </button>
         </div>
 
-        <div className="card-modal-book">
-          {children}
-        </div>
+        {children}
       </Container>
     </Overlay>,
     document.getElementById("modal-root")
