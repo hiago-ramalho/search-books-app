@@ -4,14 +4,9 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 1.6rem;
-
-  .pagination {
-    width: 100%;
-    margin: 0 auto;
-  }
 `;
 
-export const ContainerBook = styled.div`
+export const ContainerBooks = styled.div`
   width: 90%;
   margin: 3rem auto;
 
@@ -23,21 +18,16 @@ export const ContainerBook = styled.div`
       grid-template-columns: repeat(4, 1fr);
     }
 
-    @media(max-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  @media(max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @media(max-width: 576px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media(max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @media(max-width: 480px) {
-      display: flex;
-      flex-direction: column;
-    }
-`;
-
-export const ContainerPagination = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  @media(max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;

@@ -9,8 +9,9 @@ import GlobalStyles from '../../styles/GlobalStyles';
 import IconSearch from "../../assets/images/search.svg"
 import ImageBook from '../../assets/images/illustration-book.jfif'
 
-import { Container, ContainerBook } from './styles';
+import { Container, ContainerBooks } from './styles';
 import Pagination from "../Pagination";
+import Modal from "../Modal";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -20,6 +21,9 @@ function App() {
 
   const [maxResults, setMaxResults] = useState(10);
   const [startIndex, setStartIndex] = useState(0)
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [idBook, setIdBook] = useState('');
 
   async function handleSearchBook() {
     try {
@@ -44,7 +48,6 @@ function App() {
     })();
   }, [])
 
-
   function handleSearchTerm(event) {
     setSearchTerm(event.target.value)
   }
@@ -58,11 +61,15 @@ function App() {
     handleSearchBook()
   }
 
+  function handleOpenModal(book) {
+    setIdBook(book.id)
+    setIsModalOpen(true);
+  }
+
   return (
     <>
       <GlobalStyles />
       <Container>
-
         <Header />
 
         <InputSearch>
@@ -97,19 +104,45 @@ function App() {
           </div>
         </InputSearch>
 
-        <ContainerBook>
+        <ContainerBooks>
           {books.map((book) => (
-            <Book key={books.id ? books.id : Math.random()}>
+            <Book
+              key={book.id}
+            >
               <img src={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ImageBook} alt="" />
               <div className="text-content">
                 <h3>{book.volumeInfo.title}</h3>
-                <p className="description">{book.volumeInfo.authors}</p>
-                <button>Saiba mais</button>
+                <p>{book.volumeInfo.authors}</p>
+                <p className="description">{book.volumeInfo.description}</p>
+                <button onClick={() => handleOpenModal(book)} >Saiba mais</button>
               </div>
             </Book>
           ))}
 
-        </ContainerBook>
+          {isModalOpen && (
+            <Modal onCLoseModal={() => setIsModalOpen(false)}>
+              {books.map((book) => (
+                idBook === book.id && (
+                  <div className="card-book" key={book.id}>
+                    <h1 className="title-book">{book.volumeInfo.title}</h1>
+                    <img src={book.volumeInfo.imageLinks.thumbnail} alt="Thumbnail Book" />
+                    <p className="author-book">
+                      {book.volumeInfo.authors ? `Autor: ${book.volumeInfo.authors}` : ''}
+                    </p>
+                    <p className="description">
+                      {book.volumeInfo.description ? `"${book.volumeInfo.description}"` : ''}
+                    </p>
+                    <span className="book-pages">
+                      {book.volumeInfo.pageCount ? `Páginas: ${book.volumeInfo.pageCount}` : ''}
+                    </span>
+                  </div>
+
+                )
+              ))}
+            </Modal>
+          )}
+
+        </ContainerBooks>
 
         {content && (
           <Pagination

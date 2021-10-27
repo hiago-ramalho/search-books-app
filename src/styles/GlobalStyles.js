@@ -29,4 +29,17 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #fcbd84;
+    border-radius: 1rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fed9b7;
+  }
 `;

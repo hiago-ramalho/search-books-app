@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 90%;
+  margin: 0 auto 3rem auto;
 
-margin-bottom: 3rem;
   ul {
     display: flex;
     justify-content: flex-end;

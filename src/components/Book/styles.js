@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
   padding: 1rem;
   background: #fed7b488;
   border-radius: .4rem;
 
   position: relative;
+  
   img {
     width: 100%;
     height: 25rem;
@@ -14,15 +14,21 @@ export const Container = styled.div`
 
   div.text-content {
     margin-bottom: 2rem;
+
     h3 {
       font-size: 1.8rem;
       margin-top: 1rem;
     }
 
     p.description {
-      width: auto;
-      margin-top: .5rem;
+      max-width: 18rem;
+      font-style: italic;
+      color: #6c757d;
+      margin-top: .4rem;
+
+      white-space: nowrap;
       text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
